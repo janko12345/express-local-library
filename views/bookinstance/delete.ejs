@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/bootstrapHead") %>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <%- include("../partials/sidebar") %>
+            </div>
+            <div class="col-sm-10">
+                <% status = bookinstance.status %>
+                <h1><%= title %> of: <%= book.title %></h1>
+
+                <p><strong>Imprint:</strong> <%= bookinstance.imprint %></p>
+                <p><strong>status:</strong> <% if(status === "Available"){%>
+                    <span class="text-success"><%= status %></span>
+                    <% } else if(status === "Maintenance"){ %>
+                    <span class="text-danger"><%= status %></span>
+                    <% }else{ %>
+                    <span class="text-warning"><%= status %></span>
+                    <% } %>
+                </p>
+                <p>Do you really want to delete this copy?</p>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <input type="hidden" id="bookinstanceid" class="form-control" required
+                            value="<%= bookinstance._id %>" name="bookinstanceid">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

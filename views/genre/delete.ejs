@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/bootstrapHead") %>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <%- include("../partials/sidebar") %>
+            </div>
+            <div class="col-sm-10">
+                <h1><%= title %>: <%= genre.name %></h1>
+
+                <% if (genre_books.length) { %>
+                <p>
+                    <strong>Delete the following books before attempting to delete this genre</strong>
+                <div style="margin: 20px 0 0 20px">
+                    <h4>Books</h4>
+                    <dl>
+                        <% genre_books.forEach(book => { %>
+                        <dt><a href="<%= book.url %>"><%= book.title %></a></dt>
+                        <dd><%= book.summary %></dd>
+                        <% }) %>
+                    </dl>
+                </div>
+                </p>
+                <% } else{ %>
+                <p>Do you really want to delete this genre?</p>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <input type="hidden" id="genreid" class="form-control" required value="<%= genre._id %>"
+                            name="genreid">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Delete</button>
+                </form>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

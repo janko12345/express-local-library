@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/bootstrapHead") %>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <%- include("../partials/sidebar") %>
+            </div>
+            <div class="col-sm-10">
+                <h1>ID: <%= bookinstance._id %> </h1>
+                <p><strong>Title: </strong><a href="<%= bookinstance.book.url %>"><%= bookinstance.book.title %> </a>
+                </p>
+                <p><strong>Imprint: </strong><%= bookinstance.imprint %> </p>
+                <p><strong>Status: </strong>
+                    <% let status = bookinstance.status%>
+                    <% if(status === "Available"){ %>
+
+                    <span class="text-success"><%= status %> </span>
+
+                    <% }else if(status === "Maintenance"){ %>
+
+                    <span class="text-danger"><%= status %> </span>
+
+                    <% } else{ %>
+
+                    <span class="text-warning"><%= status %> </span>
+
+                    <% } %>
+                    <% if(status !== "Available"){ %>
+
+                <p><strong>Due back: </strong><%= bookinstance.due_back_formatted %> </p>
+
+                <% } %>
+                </p>
+                <p><a class="btn btn-primary" role="button" href="<%= bookinstance.url + "/delete"%>">Delete copy</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
