@@ -8,7 +8,7 @@ var logger = require('morgan');
 var compression = require('compression');
 var helmet = require('helmet');
 
-
+require("dotenv").config();
 var app = express();
 var mongoose = require("mongoose");
 
